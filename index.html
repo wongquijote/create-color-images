@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Kyle Wong" />
+  <title>CS180 Project 1</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">CS180 Project 1</h1>
+<p class="author">Kyle Wong</p>
+<p class="date">September 2023</p>
+</header>
+<h1 id="background">Background</h1>
+<p>Sergei Mikhailovich Prokudin-Gorskii (1863-1944) was a pioneer in
+color photography who foresaw its future potential as early as 1907. He
+obtained special permission from the Russian Tsar to travel across the
+vast Russian Empire and capture color photographs of various subjects,
+including a rare color portrait of Leo Tolstoy. Prokudin-Gorskii
+meticulously photographed a wide range of subjects, such as people,
+buildings, landscapes, railroads, and bridges, resulting in thousands of
+color pictures. His innovative approach involved recording three
+exposures of each scene on glass plates using red, green, and blue
+filters, despite the lack of immediate means to print color photographs.
+He envisioned the use of special projectors in educational settings
+throughout Russia for children to learn about their country through
+these images. Unfortunately, his plans never came to fruition as he left
+Russia in 1918 after the revolution and never returned. Fortunately, his
+RGB glass plate negatives, documenting the final years of the Russian
+Empire, survived and were acquired by the Library of Congress in 1948.
+Recently, the Library of Congress has digitized these negatives, making
+them accessible online to the public.</p>
+<h1 id="introduction">Introduction</h1>
+<p>We were given digitized Prokudin-Gorskii glass plate images and,
+using image processing techniques, we were supposed to produce a color
+image with as few visual artifacts as possible.</p>
+<p>First, I extracted the three color channel images. The next part was
+aligning them so that they form a single RGB color image. At first, I
+tried just placing them on top of each other with no alignment. Here are
+the results.</p>
+<h1 id="techniques">Techniques</h1>
+<p>The first thing I tried was to use an exhaustive search over a window
+of shifts and choose the shift that produced the lowest loss over the
+whole image.</p>
+<p>I tested two loss functions, L2 norm also known as the Sum of Squared
+Differences (SSD), and normalized cross-correlation (NCC).</p>
+<p>There is an important distinction for these losses. For SSD, you want
+to get the smallest difference, whereas for NCC you want to get the
+largest cross-correlation.</p>
+<h1 id="smaller-photos-single-scale">Smaller photos, single-scale</h1>
+<p>I chose a window of 16x16 pixels, so I would have to iterate through
+every combination between [-16, 16] pixels in both the x-axis and the
+y-axis. That’s a total of 1,024 different shifts that we have to compare
+for each pixel. This works fine for smaller images which in our dataset
+were the JPG-format images (around 350x350, 122,500 pixels total,  100
+million iterations); however, larger images such as the TIF-format
+images would take too long to iterate through (around 3500x3500,
+12,250,000 pixels total,  100 billion iterations).</p>
+<h1 id="larger-photos-multi-scale">Larger photos, multi-scale</h1>
+<p>For the larger photos, it was necessary to do an image pyramid
+algorithm. The idea behind image pyramids is to rescale the image to a
+smaller resolution and then do an exhaustive search over that smaller
+image and then rescale it back to the original image dimensions.</p>
+<p>For example, consider 4 rescaling operations, which I’ll call a
+4-level pyramid. Scale it by 1/16, which you get by doing <span
+class="math inline">(1/2)<sup>4</sup></span>. This produces an image of
+1/16 the resolution which is small enough for our align algorithm. We
+then rescale the image back to 1/8. The important thing to remember is
+that rescaling by 2 will double the resolution. Therefore a shift of 1x1
+pixel will become a shift of 2x2 pixels. We can now iterate through all
+shifts of 2x2 pixels in our exhaustive search. Then just continue to do
+that until we reach our original resolution again.</p>
+<p>This algorithm works as long as we scale to a reasonable amount.
+Intuitively, viewing this from a per-pixel perspective, when we look at
+an image we cannot process every single pixel and it will look similar
+to our eyes if we average out a window of pixels and create a smaller
+resolution image. The main problem with this that I found is that edges
+with sharp color changes will not look similar if we were to average it.
+That is why we have to iteratively rescale and do an exhaustive search
+over a much smaller amount of possible shifts, so we can recover any
+info lost from the averaging.</p>
+<h2 id="additional-problems">Additional Problems</h2>
+<p>One problem that I encountered was that the images have borders that
+are one color usually black. The problem was that when I calculate the
+loss function over that region it does really well across many shifts
+now since the region was just a lot of every color. This affects the
+total loss and in some cases it will make images turn out poorly.</p>
+<p>My solution was to crop out that region. I noticed that the borders
+tended to be similar maybe due to the camera being used. I eyeballed it
+and decided to take out 5% of the image on each edge when I was
+computing the loss.</p>
+<h1
+id="smaller-photos-color-channel-alignment-no-edge-detection-single-scale">Smaller
+photos, color channel alignment, no edge detection, single-scale</h1>
+<p>Here are the aligned small images (jpg) using just exhaustive search
+and no image pyramid. All the photo info are included and follow the
+same format– green shift: (x, y) red shift: (x, y) filename</p>
+<figure>
+<img src="cathedral.jpg" id="fig:enter-label"
+alt="(2, 5) (3, 12) cathedral.jpg" />
+<figcaption aria-hidden="true">(2, 5) (3, 12) cathedral.jpg</figcaption>
+</figure>
+<figure>
+<img src="monastery.jpg" id="fig:enter-label"
+alt="(2, -3) (2, 3) monastery.jpg" />
+<figcaption aria-hidden="true">(2, -3) (2, 3) monastery.jpg</figcaption>
+</figure>
+<figure>
+<img src="tobolsk.jpg" id="fig:enter-label"
+alt="(2, 3) (3, 6) tobolsk.jpg" />
+<figcaption aria-hidden="true">(2, 3) (3, 6) tobolsk.jpg</figcaption>
+</figure>
+<h1
+id="larger-photos-color-channel-alignment-no-edge-detection-multi-scale">Larger
+photos, color channel alignment, no edge detection, multi-scale</h1>
+<p>Here are the aligned large images (tif) using the image pyramid.
+Again all the photo info are included and follow the same format– green
+shift: (x, y) red shift: (x, y) filename</p>
+<figure>
+<img src="emir.jpg" id="fig:enter-label"
+alt="green shift: (x=24, y=49) red shift: (x=43, y=88) emir.tif" />
+<figcaption aria-hidden="true">green shift: (x=24, y=49) red shift:
+(x=43, y=88) emir.tif</figcaption>
+</figure>
+<figure>
+<img src="church.jpg" id="fig:enter-label"
+alt="(3, 25) (-5, 58) church.tif" />
+<figcaption aria-hidden="true">(3, 25) (-5, 58) church.tif</figcaption>
+</figure>
+<figure>
+<img src="three_generations.jpg" id="fig:enter-label"
+alt="(13, 55) (10, 112) three_generations.tif" />
+<figcaption aria-hidden="true">(13, 55) (10, 112)
+three_generations.tif</figcaption>
+</figure>
+<figure>
+<img src="melons2.jpg" id="fig:enter-label"
+alt="(9, 82) (11, 177) melons.tif" />
+<figcaption aria-hidden="true">(9, 82) (11, 177) melons.tif</figcaption>
+</figure>
+<figure>
+<img src="onion_church.jpg" id="fig:enter-label"
+alt="(26, 51) (36, 108) onion_church.tif" />
+<figcaption aria-hidden="true">(26, 51) (36, 108)
+onion_church.tif</figcaption>
+</figure>
+<figure>
+<img src="train.jpg" id="fig:enter-label"
+alt="(6, 42) (32, 87) train.tif" />
+<figcaption aria-hidden="true">(6, 42) (32, 87) train.tif</figcaption>
+</figure>
+<figure>
+<img src="icon.jpg" id="fig:enter-label"
+alt="(17, 41) (23, 89) icon.tif" />
+<figcaption aria-hidden="true">(17, 41) (23, 89) icon.tif</figcaption>
+</figure>
+<figure>
+<img src="self_portrait.jpg" id="fig:enter-label"
+alt="(29, 79) (34, 175) self_portrait.tif" />
+<figcaption aria-hidden="true">(29, 79) (34, 175)
+self_portrait.tif</figcaption>
+</figure>
+<figure>
+<img src="harvesters.jpg" id="fig:enter-label"
+alt="(16, 60) (13, 124) harvesters.tif" />
+<figcaption aria-hidden="true">(16, 60) (13, 124)
+harvesters.tif</figcaption>
+</figure>
+<figure>
+<img src="sculpture.jpg" id="fig:enter-label"
+alt="(-11, 33) (-27, 140) sculpture.tif" />
+<figcaption aria-hidden="true">(-11, 33) (-27, 140)
+sculpture.tif</figcaption>
+</figure>
+<figure>
+<img src="lady.jpg" id="fig:enter-label"
+alt="(8, 55) (12, 111) lady.tif" />
+<figcaption aria-hidden="true">(8, 55) (12, 111) lady.tif</figcaption>
+</figure>
+<h1
+id="choosen-large-photos-color-channel-alignment-no-edge-detection-multi-scale">Choosen
+large photos, color channel alignment, no edge detection,
+multi-scale</h1>
+<p>Here are the aligned large images (tif) that I chose from the
+dataset. Again all the photo info are included and follow the same
+format– green shift: (x, y) red shift: (x, y) filename</p>
+<figure>
+<img src="two_men.jpg" id="fig:enter-label"
+alt="green shift:(7, 41) (3, 102) two_men.tif" />
+<figcaption aria-hidden="true">green shift:(7, 41) (3, 102)
+two_men.tif</figcaption>
+</figure>
+<figure>
+<img src="protectorate.jpg" id="fig:enter-label"
+alt="(7, 40) (-10, 98) protectorate.tif" />
+<figcaption aria-hidden="true">(7, 40) (-10, 98)
+protectorate.tif</figcaption>
+</figure>
+<figure>
+<img src="painting.jpg" id="fig:enter-label"
+alt="(4, 28) (7, 68) painting.tif" />
+<figcaption aria-hidden="true">(4, 28) (7, 68) painting.tif</figcaption>
+</figure>
+<figure>
+<img src="camel.jpg" id="fig:enter-label"
+alt="(15, 20) (39, 81) camel.tif" />
+<figcaption aria-hidden="true">(15, 20) (39, 81) camel.tif</figcaption>
+</figure>
+<h1 id="bells-and-whistles">Bells and Whistles</h1>
+<p>I also did an edge detection algorithm. There are many different
+implementations of edge detection algorithms. I decided to a Sobel
+operator, also called a Sobel filter. The operator uses two 3×3 kernels
+which are convolved with the original image to calculate approximations
+of the derivatives – one for horizontal changes, and one for
+vertical.</p>
+<p>Here is the melons.tif photo with edge-detection.</p>
+<figure>
+<img src="melon edges.png" id="fig:enter-label"
+alt="Edges using the Sobel operator convolved onto the image in both the x and y directions" />
+<figcaption aria-hidden="true">Edges using the Sobel operator convolved
+onto the image in both the x and y directions</figcaption>
+</figure>
+<figure>
+<img src="melons2.jpg" id="fig:enter-label"
+alt="(9, 82) (11, 177) melons2.tif" />
+<figcaption aria-hidden="true">(9, 82) (11, 177)
+melons2.tif</figcaption>
+</figure>
+</body>
+</html>
